@@ -1,0 +1,20 @@
+// =================================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// =================================================================================
+
+package entity
+
+import (
+	"github.com/gogf/gf/v2/os/gtime"
+)
+
+// User is the golang structure for table user.
+type User struct {
+	Id         int64       `json:"id"         orm:"id"          description:""`
+	Name       string      `json:"name"       orm:"name"        description:"用户姓名"`
+	Gender     int         `json:"gender"     orm:"gender"      description:"用户性别"`
+	Mobile     string      `json:"mobile"     orm:"mobile"      description:"用户电话"`
+	Password   string      `json:"password"   orm:"password"    description:"用户密码"`
+	CreateTime *gtime.Time `json:"createTime" orm:"create_time" description:""`
+	UpdateTime *gtime.Time `json:"updateTime" orm:"update_time" description:""`
+}
