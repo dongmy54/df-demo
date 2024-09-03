@@ -20,5 +20,5 @@ Quick Start:
    - 2. manifest下的，用于服务运行时数据库交互
 4. 关于路由定义，我们在`cmd.go`中的路由定义是不全面的，它的方法和路径是在api层定义的；因此真正的路由是`cmd.go`和`api`层加一起来看才是完整的，另外通过/swagger 看也不错的
 5. 所有的controller定义都要遵循格式`Handler(ctx context.Context, req *Request) (res *Response, err error)`的
-
-
+6. 执行完`gf run main.go`后 修改代码其实会自动生效的（热更新）
+7. 路径中的参数`user/{id}` 也需要写在api参数中
