@@ -6,6 +6,8 @@ import (
 	v1 "gf-demo/api/hello/v1"
 	"gf-demo/internal/model"
 	"gf-demo/internal/service"
+
+	"github.com/gogf/gf/frame/g"
 )
 
 // Content 内容管理
@@ -41,5 +43,7 @@ func (a *cUser) Update(ctx context.Context, req *v1.UserUpdateReq) (res *v1.User
 	if err != nil {
 		return nil, err
 	}
+
+	g.Log().Debug(ctx, "hello word") // 日志
 	return &v1.UserUpdateRes{UserId: req.Id}, nil
 }
