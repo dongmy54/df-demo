@@ -22,7 +22,7 @@ var (
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
 				group.Bind(
 					hello.NewV1(),
-					controller.User,
+					controller.User, // 这里其实是一组多个url组成的路由
 				)
 			})
 			s.Run()

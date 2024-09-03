@@ -14,6 +14,8 @@ type (
 	IUser interface {
 		// Create 创建内容
 		Create(ctx context.Context, in model.UserCreateInput) (out model.UserCreateOutput, err error)
+		// Update User
+		Update(ctx context.Context, in model.UserUpdateInput) (err error)
 	}
 )
 

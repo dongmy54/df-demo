@@ -18,3 +18,8 @@ type UserCreateInput struct {
 type UserCreateOutput struct {
 	UserId uint `json:"user_id"`
 }
+
+type UserUpdateInput struct {
+	UserCreateUpdateBase
+	UserId uint
+}

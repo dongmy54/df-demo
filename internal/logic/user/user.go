@@ -33,3 +33,19 @@ func (s *sUser) Create(ctx context.Context, in model.UserCreateInput) (out model
 	}
 	return model.UserCreateOutput{UserId: uint(lastInsertID)}, err
 }
+
+// Update User
+func (s *sUser) Update(ctx context.Context, in model.UserUpdateInput) (err error) {
+	_, err = dao.User.
+		Ctx(ctx).
+		Data(in).
+		FieldsEx(dao.User.Columns().Id).
+		Where(dao.User.Columns().Id, in.UserId).
+		OmitEmpty(). // 忽略空的字段
+		Update()
+
+	if err != nil {
+		return err
+	}
+	return
+}

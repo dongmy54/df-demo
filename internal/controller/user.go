@@ -27,3 +27,19 @@ func (a *cUser) Create(ctx context.Context, req *v1.UserCreateReq) (res *v1.User
 	}
 	return &v1.UserCreateRes{UserId: out.UserId}, nil
 }
+
+func (a *cUser) Update(ctx context.Context, req *v1.UserUpdateReq) (res *v1.UserUpdateRes, err error) {
+	err = service.User().Update(ctx, model.UserUpdateInput{
+		UserCreateUpdateBase: model.UserCreateUpdateBase{
+			Name:     req.Name,
+			Mobile:   req.Mobile,
+			Gender:   req.Gender,
+			Password: req.Password,
+		},
+		UserId: req.Id,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &v1.UserUpdateRes{UserId: req.Id}, nil
+}
