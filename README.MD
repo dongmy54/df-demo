@@ -18,6 +18,7 @@ Quick Start:
 3. 配置数据库有两个地方,要注意区分
    - 1. hack下的，用于dao生成
    - 2. manifest下的，用于服务运行时数据库交互
-
+4. 关于路由定义，我们在`cmd.go`中的路由定义是不全面的，它的方法和路径是在api层定义的；因此真正的路由是`cmd.go`和`api`层加一起来看才是完整的，另外通过/swagger 看也不错的
+5. 所有的controller定义都要遵循格式`Handler(ctx context.Context, req *Request) (res *Response, err error)`的
 
 
