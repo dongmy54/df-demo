@@ -10,7 +10,7 @@ import (
 	"github.com/gogf/gf/frame/g"
 )
 
-// Content 内容管理
+// User 内容管理
 var User = cUser{}
 
 type cUser struct{}
@@ -63,4 +63,9 @@ func (a *cUser) GetList(ctx context.Context, req *v1.UserGetListReq) (res *v1.Us
 		Size:  out.Size,
 		Total: out.Total,
 	}, nil
+}
+
+func (a *cUser) Delete(ctx context.Context, req *v1.UserDeleteReq) (res *v1.UserDeleteRes, err error) {
+	err = service.User().Delete(ctx, req.Id)
+	return
 }

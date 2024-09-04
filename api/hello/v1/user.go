@@ -41,3 +41,9 @@ type UserGetListRes struct {
 	Size  int         `json:"size"`
 	Total int         `json:"total"`
 }
+
+type UserDeleteReq struct {
+	g.Meta `path:"/user/delete" method:"delete" tags:"用户" summary:"删除用户接口"`
+	Id     uint `v:"min:1#请选择需要删除的用户" dc:"用户id"`
+}
+type UserDeleteRes struct{}

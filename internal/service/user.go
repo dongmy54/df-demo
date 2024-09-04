@@ -18,6 +18,8 @@ type (
 		Update(ctx context.Context, in model.UserUpdateInput) (err error)
 		// GetList 查询内容列表
 		GetList(ctx context.Context, in model.UserGetListInput) (out *model.UserGetListOutput, err error)
+		// Delete 删除
+		Delete(ctx context.Context, id uint) error
 	}
 )
 

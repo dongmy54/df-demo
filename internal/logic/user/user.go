@@ -6,6 +6,8 @@ import (
 	"gf-demo/internal/model/entity"
 	"gf-demo/internal/service"
 
+	"github.com/gogf/gf/frame/g"
+	"github.com/gogf/gf/v2/database/gdb" // 这里要用第二版
 	"github.com/gogf/gf/v2/encoding/ghtml"
 
 	"gf-demo/internal/dao"
@@ -82,4 +84,17 @@ func (s *sUser) GetList(ctx context.Context, in model.UserGetListInput) (out *mo
 		return out, err
 	}
 	return
+}
+
+// Delete 删除
+func (s *sUser) Delete(ctx context.Context, id uint) error {
+	return dao.User.Transaction(ctx, func(ctx context.Context, tx gdb.TX) error {
+
+		// 删除内容
+		_, err := dao.User.Ctx(ctx).Where(g.Map{
+			dao.User.Columns().Id: id,
+		}).Unscoped().Delete() // Unscoped真实的删除 默认情况下有deleted_at是 软删除
+		// 删除评论
+		return err
+	})
 }
