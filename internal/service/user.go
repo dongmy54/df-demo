@@ -16,6 +16,8 @@ type (
 		Create(ctx context.Context, in model.UserCreateInput) (out model.UserCreateOutput, err error)
 		// Update User
 		Update(ctx context.Context, in model.UserUpdateInput) (err error)
+		// GetList 查询内容列表
+		GetList(ctx context.Context, in model.UserGetListInput) (out *model.UserGetListOutput, err error)
 	}
 )
 

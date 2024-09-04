@@ -22,3 +22,8 @@ Quick Start:
 5. 所有的controller定义都要遵循格式`Handler(ctx context.Context, req *Request) (res *Response, err error)`的
 6. 执行完`gf run main.go`后 修改代码其实会自动生效的（热更新）
 7. 路径中的参数`user/{id}` 也需要写在api参数中
+
+
+### 操作相关
+1. 返回一个list如果要用灵活使用`interface{}`注意`[]interface{}`是不能用一个切片的任意类型赋值的哦
+2. 对于controller的公用部分放到`api.go`下

@@ -47,3 +47,20 @@ func (a *cUser) Update(ctx context.Context, req *v1.UserUpdateReq) (res *v1.User
 	g.Log().Debug(ctx, "hello word") // 日志
 	return &v1.UserUpdateRes{UserId: req.Id}, nil
 }
+
+func (a *cUser) GetList(ctx context.Context, req *v1.UserGetListReq) (res *v1.UserGetListRes, err error) {
+	out, err := service.User().GetList(ctx, model.UserGetListInput{
+		Page: req.Page,
+		Size: req.Size,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return &v1.UserGetListRes{
+		List:  out.List,
+		Page:  out.Page,
+		Size:  out.Size,
+		Total: out.Total,
+	}, nil
+}

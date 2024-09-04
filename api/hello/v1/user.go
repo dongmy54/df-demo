@@ -27,3 +27,17 @@ type UserUpdateReq struct {
 type UserUpdateRes struct {
 	UserId uint `json:"userId"`
 }
+
+// user列表
+type UserGetListReq struct {
+	g.Meta `path:"/user/list" method:"get" tags:"用户" summary:"用户列表"`
+	CommonPaginationReq
+}
+
+type UserGetListRes struct {
+	// todo 这里返回一个列表
+	List  interface{} `json:"list"`
+	Page  int         `json:"page"`
+	Size  int         `json:"size"`
+	Total int         `json:"total"`
+}
