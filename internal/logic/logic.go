@@ -5,5 +5,6 @@
 package logic
 
 import (
+	_ "gf-demo/internal/logic/bizctx"
 	_ "gf-demo/internal/logic/user"
 )
