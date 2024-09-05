@@ -57,6 +57,10 @@ func (a *cUser) GetList(ctx context.Context, req *v1.UserGetListReq) (res *v1.Us
 		return nil, err
 	}
 
+	// 这里能获取到它们的信息
+	g.Log().Debug("=====测试当前用户Session信息的返回：======", service.Session().GetUser(ctx))
+	g.Log().Debug("=====测试当前用户Session信息的返回：======", service.BizCtx().Get(ctx).User)
+
 	return &v1.UserGetListRes{
 		List:  out.List,
 		Page:  out.Page,

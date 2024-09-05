@@ -69,9 +69,9 @@ func (s *sMiddleware) Ctx(r *ghttp.Request) {
 	service.BizCtx().Init(r, customCtx)
 	if userEntity := service.Session().GetUser(r.Context()); userEntity.Id > 0 {
 		customCtx.User = &model.ContextUser{
-			Id:       uint(userEntity.Id),
-			Passport: userEntity.Password,
-			Nickname: userEntity.Name,
+			Id:     uint(userEntity.Id),
+			Mobile: userEntity.Mobile,
+			Name:   userEntity.Name,
 		}
 	}
 	// 将自定义的上下文对象传递到模板变量中使用

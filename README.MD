@@ -22,6 +22,9 @@ Quick Start:
 5. 所有的controller定义都要遵循格式`Handler(ctx context.Context, req *Request) (res *Response, err error)`的
 6. 执行完`gf run main.go`后 修改代码其实会自动生效的（热更新）
 7. 路径中的参数`user/{id}` 也需要写在api参数中
+8. 它的session管理默认是文件存储方式，在服务端设置了session后，请求中会返回set-cookies，key: `gfsessionid`
+9. 注意在代码里，有v1和v2版本的区别哦
+
 
 
 ### 操作相关
