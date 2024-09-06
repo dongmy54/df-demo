@@ -8,6 +8,7 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 
 	"gf-demo/internal/controller"
+	"gf-demo/internal/controller/backend"
 	"gf-demo/internal/controller/hello"
 	"gf-demo/internal/service"
 )
@@ -19,7 +20,7 @@ var (
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
-			s.Group("/", func(group *ghttp.RouterGroup) {
+			s.Group("/api/v1", func(group *ghttp.RouterGroup) {
 				group.Middleware(
 					ghttp.MiddlewareHandlerResponse,
 					service.Middleware().Ctx,
@@ -30,6 +31,11 @@ var (
 					controller.Login,
 				)
 			})
+			s.Group("/api/backend", func(group *ghttp.RouterGroup) {
+				group.Middleware(ghttp.MiddlewareHandlerResponse)
+				group.Bind(backend.Auth)
+			})
+
 			s.Run()
 			return nil
 		},

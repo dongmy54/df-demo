@@ -1,13 +1,13 @@
 package middleware
 
 import (
+	"gf-demo/internal/logic/auth"
 	"gf-demo/internal/service"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 
 	"gf-demo/internal/model"
-	"gf-demo/utility/response"
 )
 
 type sMiddleware struct {
@@ -83,19 +83,24 @@ func (s *sMiddleware) Ctx(r *ghttp.Request) {
 }
 
 // 前台系统权限控制，用户必须登录才能访问
+// func (s *sMiddleware) Auth(r *ghttp.Request) {
+// 	user := service.Session().GetUser(r.Context())
+// 	if user.Id == 0 {
+// 		// 只有GET请求才支持保存当前URL，以便后续登录后再跳转回来。
+// 		if r.Method == "GET" {
+// 			_ = service.Session().SetLoginReferer(r.Context(), r.GetUrl())
+// 		}
+// 		// 根据当前请求方式执行不同的返回数据结构
+// 		if r.IsAjaxRequest() {
+// 			response.JsonRedirectExit(r, 1, "", s.LoginUrl)
+// 		} else {
+// 			r.Response.RedirectTo(s.LoginUrl)
+// 		}
+// 	}
+// 	r.Middleware.Next()
+// }
+
 func (s *sMiddleware) Auth(r *ghttp.Request) {
-	user := service.Session().GetUser(r.Context())
-	if user.Id == 0 {
-		// 只有GET请求才支持保存当前URL，以便后续登录后再跳转回来。
-		if r.Method == "GET" {
-			_ = service.Session().SetLoginReferer(r.Context(), r.GetUrl())
-		}
-		// 根据当前请求方式执行不同的返回数据结构
-		if r.IsAjaxRequest() {
-			response.JsonRedirectExit(r, 1, "", s.LoginUrl)
-		} else {
-			r.Response.RedirectTo(s.LoginUrl)
-		}
-	}
+	auth.Auth().MiddlewareFunc()(r)
 	r.Middleware.Next()
 }

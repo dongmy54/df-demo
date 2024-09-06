@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/gogf/gf v1.16.9
+	github.com/gogf/gf-jwt/v2 v2.1.0
 	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.7.2
 	github.com/gogf/gf/v2 v2.7.2
 )
@@ -18,6 +19,7 @@ require (
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
+	github.com/golang-jwt/jwt/v4 v4.3.0 // indirect
 	github.com/gomodule/redigo v1.8.5 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect

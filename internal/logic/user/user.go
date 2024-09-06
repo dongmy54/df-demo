@@ -98,3 +98,13 @@ func (s *sUser) Delete(ctx context.Context, id uint) error {
 		return err
 	})
 }
+
+func (s *sUser) GetUserByUserNamePassword(ctx context.Context, in model.AuthLoginInput) map[string]interface{} {
+	if in.UserName == "admin" && in.Password == "admin" {
+		return g.Map{
+			"id":       1,
+			"username": "admin",
+		}
+	}
+	return nil
+}

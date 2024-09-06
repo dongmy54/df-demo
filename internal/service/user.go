@@ -20,6 +20,7 @@ type (
 		GetList(ctx context.Context, in model.UserGetListInput) (out *model.UserGetListOutput, err error)
 		// Delete 删除
 		Delete(ctx context.Context, id uint) error
+		GetUserByUserNamePassword(ctx context.Context, in model.AuthLoginInput) map[string]interface{}
 	}
 )
 
