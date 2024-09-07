@@ -36,6 +36,11 @@ var (
 				group.Bind(backend.Auth)
 			})
 
+			s.Group("/backend", func(group *ghttp.RouterGroup) {
+				group.Middleware(ghttp.MiddlewareHandlerResponse)
+				group.Bind(controller.Admin)
+			})
+
 			s.Run()
 			return nil
 		},

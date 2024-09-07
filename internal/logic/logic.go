@@ -5,6 +5,7 @@
 package logic
 
 import (
+	_ "gf-demo/internal/logic/admin"
 	_ "gf-demo/internal/logic/auth"
 	_ "gf-demo/internal/logic/bizctx"
 	_ "gf-demo/internal/logic/login"

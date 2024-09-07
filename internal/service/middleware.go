@@ -13,7 +13,6 @@ type (
 	IMiddleware interface {
 		// 自定义上下文对象
 		Ctx(r *ghttp.Request)
-		// 前台系统权限控制，用户必须登录才能访问
 		Auth(r *ghttp.Request)
 	}
 )
