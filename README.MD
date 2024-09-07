@@ -24,6 +24,9 @@ Quick Start:
 7. 路径中的参数`user/{id}` 也需要写在api参数中
 8. 它的session管理默认是文件存储方式，在服务端设置了session后，请求中会返回set-cookies，key: `gfsessionid`
 9. 注意在代码里，有v1和v2版本的区别哦
+10. 关于分层
+   - 只有api才分层（分前后端目录）
+   - controller层也不分（controller中通过方法名区分前后端）
 
 
 
