@@ -3,6 +3,7 @@ module gf-demo
 go 1.18
 
 require (
+	github.com/goflyfox/gtoken v1.5.10
 	github.com/gogf/gf v1.16.9
 	github.com/gogf/gf-jwt/v2 v2.1.0
 	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.7.2
