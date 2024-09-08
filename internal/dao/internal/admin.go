@@ -26,7 +26,7 @@ type AdminColumns struct {
 	IsAdmin   string // 是否为超级管理员
 	CreatedAt string //
 	UpdatedAt string //
-	DeletedAt string // 是否删除
+	DeletedAt string //
 }
 
 // adminColumns holds the columns for table admin.

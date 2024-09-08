@@ -18,5 +18,5 @@ type Admin struct {
 	IsAdmin   interface{} // 是否为超级管理员
 	CreatedAt *gtime.Time //
 	UpdatedAt *gtime.Time //
-	DeletedAt *gtime.Time // 是否删除
+	DeletedAt *gtime.Time //
 }

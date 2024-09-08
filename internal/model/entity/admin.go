@@ -16,5 +16,5 @@ type Admin struct {
 	IsAdmin   int         `json:"isAdmin"   orm:"is_admin"   description:"是否为超级管理员"`
 	CreatedAt *gtime.Time `json:"createdAt" orm:"created_at" description:""`
 	UpdatedAt *gtime.Time `json:"updatedAt" orm:"updated_at" description:""`
-	DeletedAt *gtime.Time `json:"deletedAt" orm:"deleted_at" description:"是否删除"`
+	DeletedAt *gtime.Time `json:"deletedAt" orm:"deleted_at" description:""`
 }
