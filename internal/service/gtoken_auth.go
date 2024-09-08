@@ -4,6 +4,7 @@ package service
 
 import (
 	"fmt"
+	"gf-demo/internal/consts"
 	"net/http"
 
 	"github.com/goflyfox/gtoken/gtoken"
@@ -45,6 +46,7 @@ func GtokenLoginFuc(r *ghttp.Request) (string, interface{}) {
 // 授权之后做一些操作 比如存下这个人的信息到ctx中
 func GtokenAuthAfterFuc(r *ghttp.Request, respData gtoken.Resp) {
 	if respData.Success() {
+		r.SetCtxVar(consts.CtxAdminId, 2) // 这里先随便写一个数2
 		// 授权完成后
 		g.Dump("=======respData:", respData)
 		r.Middleware.Next()
