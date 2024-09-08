@@ -50,6 +50,9 @@ var (
 
 			s.Group("/backend", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
+				group.Bind(
+					controller.File,
+				)
 
 				err := gfToken.Middleware(ctx, group)
 				if err != nil {
