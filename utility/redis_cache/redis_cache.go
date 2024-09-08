@@ -1,9 +1,11 @@
 package redisCache
 
 import (
+	"context"
 	"sync"
 
 	"github.com/gogf/gf/v2/database/gredis"
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcache"
 )
 
@@ -15,8 +17,10 @@ var (
 // 封装gcache为redis的缓存
 func InitRedis() {
 	once.Do(func() {
+		ctx := context.TODO()
+		addr := g.Cfg().MustGet(ctx, "redis.default.address").String()
 		redisConfig := &gredis.Config{
-			Address: "127.0.0.1:6379",
+			Address: addr,
 			Db:      9,
 		}
 
