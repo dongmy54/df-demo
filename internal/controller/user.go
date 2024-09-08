@@ -6,6 +6,7 @@ import (
 	v1 "gf-demo/api/hello/v1"
 	"gf-demo/internal/model"
 	"gf-demo/internal/service"
+	redisCache "gf-demo/utility/redis_cache"
 
 	"github.com/gogf/gf/frame/g"
 )
@@ -49,6 +50,8 @@ func (a *cUser) Update(ctx context.Context, req *v1.UserUpdateReq) (res *v1.User
 }
 
 func (a *cUser) GetList(ctx context.Context, req *v1.UserGetListReq) (res *v1.UserGetListRes, err error) {
+	// 缓存测试
+	g.Dump("===========redisCache test:", redisCache.Cache.MustGet(ctx, "test:cache:key").String())
 	out, err := service.User().GetList(ctx, model.UserGetListInput{
 		Page: req.Page,
 		Size: req.Size,

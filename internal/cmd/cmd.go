@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"time"
 
 	"github.com/goflyfox/gtoken/gtoken"
 	"github.com/gogf/gf/v2/frame/g"
@@ -12,6 +13,7 @@ import (
 	"gf-demo/internal/controller/backend"
 	"gf-demo/internal/controller/hello"
 	"gf-demo/internal/service"
+	redisCache "gf-demo/utility/redis_cache"
 )
 
 var (
@@ -21,6 +23,10 @@ var (
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
+			// 先初始化redisCache
+			redisCache.InitRedis()
+			// 测试设置一个值
+			redisCache.Cache.Set(ctx, "test:cache:key", 233, time.Minute*1)
 			s.Group("/api/v1", func(group *ghttp.RouterGroup) {
 				group.Middleware(
 					ghttp.MiddlewareHandlerResponse,
