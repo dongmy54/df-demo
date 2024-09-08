@@ -8,7 +8,7 @@ import (
 	"gf-demo/internal/service"
 	redisCache "gf-demo/utility/redis_cache"
 
-	"github.com/gogf/gf/frame/g"
+	"github.com/gogf/gf/v2/frame/g"
 )
 
 // User 内容管理
@@ -52,6 +52,9 @@ func (a *cUser) Update(ctx context.Context, req *v1.UserUpdateReq) (res *v1.User
 func (a *cUser) GetList(ctx context.Context, req *v1.UserGetListReq) (res *v1.UserGetListRes, err error) {
 	// 缓存测试
 	g.Dump("===========redisCache test:", redisCache.Cache.MustGet(ctx, "test:cache:key").String())
+	g.Redis().SetEX(ctx, "key", "value", 100) // 直接使用redis存储
+	val, _ := g.Redis().Get(ctx, "key")
+	g.Dump("===========redis test:", val.String())
 	out, err := service.User().GetList(ctx, model.UserGetListInput{
 		Page: req.Page,
 		Size: req.Size,
@@ -61,8 +64,8 @@ func (a *cUser) GetList(ctx context.Context, req *v1.UserGetListReq) (res *v1.Us
 	}
 
 	// 这里能获取到它们的信息
-	g.Log().Debug("=====测试当前用户Session信息的返回：======", service.Session().GetUser(ctx))
-	g.Log().Debug("=====测试当前用户Session信息的返回：======", service.BizCtx().Get(ctx).User)
+	g.Log().Debug(ctx, "=====测试当前用户Session信息的返回：======", service.Session().GetUser(ctx))
+	g.Log().Debug(ctx, "=====测试当前用户Session信息的返回：======", service.BizCtx().Get(ctx).User)
 
 	return &v1.UserGetListRes{
 		List:  out.List,
