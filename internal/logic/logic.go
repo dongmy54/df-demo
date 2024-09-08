@@ -8,6 +8,7 @@ import (
 	_ "gf-demo/internal/logic/admin"
 	_ "gf-demo/internal/logic/auth"
 	_ "gf-demo/internal/logic/bizctx"
+	_ "gf-demo/internal/logic/collection"
 	_ "gf-demo/internal/logic/file"
 	_ "gf-demo/internal/logic/login"
 	_ "gf-demo/internal/logic/middleware"

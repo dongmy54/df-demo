@@ -31,6 +31,7 @@ var (
 					controller.User, // 这里其实是一组多个url组成的路由
 					controller.Login,
 					controller.Order,
+					controller.Collection,
 				)
 			})
 			s.Group("/api/backend", func(group *ghttp.RouterGroup) {
