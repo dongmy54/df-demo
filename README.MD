@@ -28,7 +28,16 @@ Quick Start:
    - 只有api才分层（分前后端目录）
    - controller层也不分（controller中通过方法名区分前后端）
 11. 测试时一定要注意版本问题 是v1还是v2
-
+12. `ScanList`的用法，它的最大特点是不写死with,动态的组合关联数据
+```go
+ g.Model("user_scores").
+      // ListItemValuesUnique 代表的是从中取值 这里代表从users切片中取每个User字段的Id字段
+		Where("user_id", gdb.ListItemValuesUnique(users, "User", "Id")).
+      // UserScores 扫描到UserScores字段
+      // User代表 与User结构体关联
+      // user_id:id 代表表user_scores.user_id 和 users.id关联
+		ScanList(&users, "UserScores", "User", "user_id:id")
+```
 
 ### 操作相关
 1. 返回一个list如果要用灵活使用`interface{}`注意`[]interface{}`是不能用一个切片的任意类型赋值的哦

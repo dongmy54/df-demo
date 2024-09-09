@@ -22,6 +22,7 @@ var (
 		Usage: "main",
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
+			DoDoDo()
 			s := g.Server()
 			// 先初始化redisCache
 			redisCache.InitRedis()
@@ -75,3 +76,7 @@ var (
 		},
 	}
 )
+
+func DoDoDo() {
+	service.Playground().Do()
+}

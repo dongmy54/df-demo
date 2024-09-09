@@ -1,6 +1,8 @@
 package model
 
-import "github.com/gogf/gf/os/gtime"
+import (
+	"github.com/gogf/gf/os/gtime"
+)
 
 // UserCreateUpdateBase 创建/修改内容基类
 type UserCreateUpdateBase struct {

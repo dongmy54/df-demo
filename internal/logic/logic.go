@@ -13,6 +13,7 @@ import (
 	_ "gf-demo/internal/logic/login"
 	_ "gf-demo/internal/logic/middleware"
 	_ "gf-demo/internal/logic/order"
+	_ "gf-demo/internal/logic/playground"
 	_ "gf-demo/internal/logic/session"
 	_ "gf-demo/internal/logic/user"
 )
