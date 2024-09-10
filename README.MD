@@ -38,7 +38,37 @@ Quick Start:
       // user_id:id 代表表user_scores.user_id 和 users.id关联
 		ScanList(&users, "UserScores", "User", "user_id:id")
 ```
+13. 默认非链式安全
+```go
+// 默认情况下非链式安全
+	user := g.Model("user").Safe()
+	//m := user.Clone()
+	user.Limit(3)
+	user.Where("id > ?", 4)
+
+	r, _ := user.All()
+	g.Dump(r)
+```
 
 ### 操作相关
 1. 返回一个list如果要用灵活使用`interface{}`注意`[]interface{}`是不能用一个切片的任意类型赋值的哦
 2. 对于controller的公用部分放到`api.go`下
+
+### DB
+```go
+// 冲突会自动更新还是挺方便
+g.Model("user").Data(g.Map{
+		"id":       1,
+		"name":     "啦啦啦啦啦",
+		"password": "pw1",
+	}).Save()
+
+
+//返回的是一个map
+r, _ := dao.User.Ctx(context.TODO()).Fields("name", "mobile").
+		Order("created_at desc").One()
+// 通过r["name"]取值
+```
+
+1. where支持非常多的方式,map/slice/string/struc还是非常好用的
+2. Scan既能扫单个对象 也能扫多个对象（切片）
