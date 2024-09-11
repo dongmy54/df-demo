@@ -72,3 +72,18 @@ r, _ := dao.User.Ctx(context.TODO()).Fields("name", "mobile").
 
 1. where支持非常多的方式,map/slice/string/struc还是非常好用的
 2. Scan既能扫单个对象 也能扫多个对象（切片）
+3. 类似scoped写法,还是比较好，利于逻辑复用
+```go
+// 一个自定义的Name查询
+func NameLike(name string) func(m *gdb.Model) *gdb.Model {
+	return func(m *gdb.Model) *gdb.Model {
+		return m.Where("name like ?", name+"%")
+	}
+}
+
+func IdGreate10(m *gdb.Model) *gdb.Model {
+	return m.Where("id > ?", 10)
+}
+
+dao.User.Ctx(context.TODO()).Handler(NameLike("KKK"), IdGreate10).One()
+```

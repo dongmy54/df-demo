@@ -1,9 +1,12 @@
 package playground
 
 import (
+	"context"
+	"gf-demo/internal/dao"
 	"gf-demo/internal/model/entity"
 	"gf-demo/internal/service"
 
+	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 )
 
@@ -24,9 +27,21 @@ type UserInfo struct {
 	UserScores []*entity.UserScores // 一对多
 }
 
+// 一个自定义的Name查询
+func NameLike(name string) func(m *gdb.Model) *gdb.Model {
+	return func(m *gdb.Model) *gdb.Model {
+		return m.Where("name like ?", name+"%")
+	}
+}
+
+func IdGreate10(m *gdb.Model) *gdb.Model {
+	return m.Where("id > ?", 10)
+}
+
 // 这是我自己定义的一个练写方法
 func (s *sPlayground) Do() {
-	g.Model("user u").LeftJoin("user_detail ud", "u.id=ud.user_id").Fields("u.*,ud.address").Where("u.id", 1).One()
+	r, _ := dao.User.Ctx(context.TODO()).Handler(NameLike("KKK"), IdGreate10).One()
+	g.Dump("=============", r)
 }
 
 // 定义用户列表
